@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>ToDo</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    </head>
+    <style>
+        #container{
+            background-color: lightskyblue; position: absolute; 
+            margin: 0 auto; 
+        }
+    </style>
+    <body >
+        <div id="container" ng-app="todo" ng-controller="todoCtrl">
+            <div style="padding: 10px;">
+                <h1 style="font-family: Bradley Hand; text-align:center;">ToDo List</h1>
+                ToDo: <input type="text" placeholder="Add New" size="50" ng-model="todoInput"> 
+                <button ng-click="todoAdd()">Add</button>
+                <div ng-repeat="x in todoList" style="padding-top: 5px; padding-bottom: 5px;">
+                    <input type="checkbox"> <span ng-bind="x"></span>
+                </div>
+                <div style="padding: 20px">
+                    <button style="width: 50%; float: left;">Remove Finished</button>
+                    <button style="width: 50%; float: left;">Clear All</button> 
+                </div>   
+            </div>
+        </div>
+    </body>
+    <script>
+        var app = angular.module("todo", []);
+        app.controller("todoCtrl", function($scope) {
+            $scope.todoList = []; 
+            $scope.todoAdd = function() {
+                $scope.todoList.push($scope.todoInput);
+                $scope.todoInput = "";
+            };
+        });
+    </script>
+</html>
